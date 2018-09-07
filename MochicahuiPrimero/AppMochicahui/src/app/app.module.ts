@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
-
+import {ReporteDetallePage}from '../pages/reporte-detalle/reporte-detalle';
 
 //componentes
 import { ReporteComponent } from "../components/reporte/reporte";
@@ -22,6 +22,7 @@ import {CapturaReporePage} from "../pages/captura-repore/captura-repore";
 import { GoogleMaps } from "@ionic-native/google-maps";
 import { ReporteProvider } from '../providers/reporte/reporte';
 import {ReporteConsultaPage}from '../pages/reporte-consulta/reporte-consulta';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +31,7 @@ import {ReporteConsultaPage}from '../pages/reporte-consulta/reporte-consulta';
     ListPage,
     LoginPage, 
     CapturaReporePage,
+    ReporteDetallePage,
     //compoenentes
     ReporteComponent,
     RegistrarUsuarioComponent,ReporteConsultaPage
@@ -46,6 +48,7 @@ import {ReporteConsultaPage}from '../pages/reporte-consulta/reporte-consulta';
     HomePage,
     ListPage, 
     LoginPage, 
+    ReporteDetallePage,
     CapturaReporePage,ReporteConsultaPage,
     //compoenentes
     ReporteComponent,
@@ -55,7 +58,7 @@ import {ReporteConsultaPage}from '../pages/reporte-consulta/reporte-consulta';
     StatusBar,
     SplashScreen, GoogleMaps,Camera,BarcodeScanner,Base64, LoginProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ReporteProvider,
+    ReporteProvider,PhotoViewer
    
   ]
 })

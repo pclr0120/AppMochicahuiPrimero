@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReporteProvider } from '../../providers/reporte/reporte';
+import { LoginProvider } from '../../providers/login/login';
+import { ReporteDetallePage } from '../reporte-detalle/reporte-detalle';
 
 /**
  * Generated class for the ReporteConsultaPage page.
@@ -18,9 +20,11 @@ export class ReporteConsultaPage {
 
   constructor(public navCtrl: NavController, 
     public listaR:ReporteProvider 
-    ,public navParams: NavParams) {
-      
-      this.listaR.GetReporte(1);
+    ,public navParams: NavParams,
+    private loginU:LoginProvider
+    ) {
+
+      this.listaR.GetReporte(this.loginU.DataUser.Id);
   }
   imgb:string="";
   ionViewDidLoad() {
@@ -29,6 +33,12 @@ export class ReporteConsultaPage {
   }
   ionViewWillEnter(){
     
+  }
+
+  OpenDetalle(id:number){
+    this.listaR.IdReporte=id;
+    this.navCtrl.push(ReporteDetallePage)
+
   }
 
 }

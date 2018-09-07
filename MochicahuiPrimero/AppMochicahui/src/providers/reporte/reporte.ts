@@ -14,9 +14,15 @@ import { IReporte } from '../../Interface/IReporte';
 @Injectable()
 export class ReporteProvider {
 
-
   public reporte: Reporte = new Reporte();
   public ListaReporte: Reporte[] = [];
+ 
+
+
+  //variable para el detalle del reporte
+    public IdReporte:number=null;
+    public DetalleReporte:Reporte=new Reporte();
+  //
   constructor(public http: HttpClient, public loadingCtrl: LoadingController) {
    
  
@@ -49,7 +55,7 @@ export class ReporteProvider {
     });
   }
 
-  GetReporte(user: number) {
+  GetReporte(user) {
     let loading = this.loadingCtrl.create({
       content: 'Obteniendo Reporte..'
     });
@@ -75,10 +81,21 @@ export class ReporteProvider {
         }, 2000);
         resolve(data);
       }, err => {
-        alert("Error#S0 Verifique su conenxion a internet.");
+        alert("Error#S0 Verifique su conenxion a internet."+JSON.stringify(err));
       });
     });
 
+  }
+
+  GetReporteDetalle(id){
+
+    try {
+      this.DetalleReporte=this.ListaReporte.filter(data=>(data.Id==id)).pop();
+      alert(JSON.stringify(this.DetalleReporte));
+      
+    } catch (error) {
+      
+    }
   }
 
 }

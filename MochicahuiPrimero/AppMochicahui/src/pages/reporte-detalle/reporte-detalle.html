@@ -1,18 +1,72 @@
-<!--
-  Generated template for the ReporteDetallePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ReporteDetalle</ion-title>
+    <ion-title class="text-center">
+      Reporte Detalle
+      <ion-icon ios="ios-clipboard" md="md-clipboard"></ion-icon>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <h3>Ubicacion</h3>
+  <div id="map_canvas">
+    <!-- <button ion-button >
+      <ion-icon ios="ios-locate-outline" md="md-locate"></ion-icon>
+    </button> -->
+  </div>
+
+
+  <form #FormReporte="ngForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating> Detalles de la ubicacion*</ion-label>
+        <ion-input [(ngModel)]="reporte.DetalleReporte.DescripcionUbicacion"  disabled name="reporte.DetalleReporte.DescripcionUbicacion" maxlength="100"
+          required type="text"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label floating>Describe el problema*</ion-label>
+        <ion-input [(ngModel)]="reporte.DetalleReporte.DetalleProblema" disabled name="reporte.DetalleReporte.DetalleProblema" maxlength="100" required type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+
+        <h3>FOTOS(La tres son requeridas):</h3>
+
+
+        <ion-img style="width: 80px; height: 80px;"  (click)="openImage(0)" [src]="imgB[0]"></ion-img>
+        <ion-img style="width: 80px; height: 80px;" (click)="openImage(1)" [src]="imgB[1]"></ion-img>
+        <ion-img style="width: 80px; height: 80px;" (click)="openImage(2)" [src]="imgB[2]" ></ion-img>
+
+
+
+      </ion-item>
+      
+
+      <ion-item style="font-size: 10px">
+          <ion-label>Grado del problema</ion-label>
+          <ion-select [(ngModel)]="reporte.DetalleReporte.Grado" disabled name="reporte.DetalleReporte.Grado" required>
+            <ion-option value="1">Normal</ion-option>
+            <ion-option value="2">Solucion inmediata</ion-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-item>
+        <button ion-button full>Volver a Todos los reportes&nbsp;&nbsp;&nbsp;
+          <ion-icon name="ios-send-outline"></ion-icon>
+        </button>
+      </ion-item>
+
+    </ion-list>
+
+
+  </form>
+
 
 </ion-content>

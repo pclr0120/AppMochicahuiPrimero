@@ -22,14 +22,20 @@ import { ReporteConsultaPage } from '../reporte-consulta/reporte-consulta';
 })
 export class CapturaReporePage {
   map: GoogleMap;
-  reporteI:Reporte;
+  reporteI: Reporte;
   imgB: string[] = [];
-  BanderFoto:string="";
-  constructor(public navCtrl: NavController,private user:LoginProvider,private reporte:ReporteProvider, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public navParams: NavParams, private camera: Camera, ) {
+  BanderFoto: string = "";
+  constructor(public navCtrl: NavController,
+    private user: LoginProvider,
+    private reporte: ReporteProvider,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
+    public navParams: NavParams,
+    private camera: Camera, ) {
     this.imgB[0] = "../assets/iconos/cam3.png";
     this.imgB[1] = "../assets/iconos/cam3.png";
     this.imgB[2] = "../assets/iconos/cam3.png";
-    this.reporteI=new Reporte();
+    this.reporteI = new Reporte();
   }
 
 
@@ -56,24 +62,24 @@ export class CapturaReporePage {
 
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.imgB[n] = base64Image;
-      alert("tamaño:"+this.imgB[0].length)
-      let cont:number=0;
-      for (let index = 0; index <this.imgB.length; index++) {
-      
-        if(this.imgB[index]!="../assets/iconos/cam3.png"){
-          cont+=1
-      
-        }else
+      alert("tamaño:" + this.imgB[0].length)
+      let cont: number = 0;
+      for (let index = 0; index < this.imgB.length; index++) {
+
+        if (this.imgB[index] != "../assets/iconos/cam3.png") {
+          cont += 1
+
+        } else
           break;
 
-  
-        
+
+
       }
-      if(cont==3)
-        this.BanderFoto="true";
-        else
-        this.BanderFoto="";
-   
+      if (cont == 3)
+        this.BanderFoto = "true";
+      else
+        this.BanderFoto = "";
+
       setTimeout(() => {
         loading.dismiss();
       }, 1000);
@@ -98,7 +104,7 @@ export class CapturaReporePage {
       let loading = this.loadingCtrl.create({
         content: 'Cargando foto...'
       });
-    
+
       loading.present();
       setTimeout(() => {
         loading.dismiss();
@@ -133,12 +139,12 @@ export class CapturaReporePage {
   GetUbicacion() {
     this.map.clear();
 
-   // Get the location of you
-     let loading = this.loadingCtrl.create({
+    // Get the location of you
+    let loading = this.loadingCtrl.create({
       content: 'Obteniendo Ubicacion...'
-     });
+    });
 
-     loading.present();
+    loading.present();
 
 
 
@@ -161,51 +167,51 @@ export class CapturaReporePage {
               position: location.latLng,
               animation: GoogleMapsAnimation.BOUNCE
             });
-            alert("local:"+location.latLng)
+            alert("local:" + location.latLng)
             alert(JSON.stringify(this.imgB[0]))
-            this.reporteI.UbicacionEnvioRep=location.latLng.toString();
+            this.reporteI.UbicacionEnvioRep = location.latLng.toString();
             setTimeout(() => {
               loading.dismiss();
             }, 2000);
-           // show the infoWindow
+            // show the infoWindow
             marker.showInfoWindow();
 
             // If clicked it, display the alert
             marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-          
+
             });
           });
       });
   }
 
-  EnviarReporte(){
+  EnviarReporte() {
     try {
-      this.reporte.reporte.Id=0;
-      this.reporte.reporte.IdUsuario=this.user.DataUser.Id;
-     // this.reporte.reporte.IdTipoProblema=this.reporteI.IdTipoProblema;
-     this.reporte.reporte.DescripcionUbicacion=this.reporteI.DescripcionUbicacion;
-this.reporte.reporte.UbicacionEnvioRep=this.reporteI.UbicacionEnvioRep;
-      this.reporte.reporte.DetalleProblema=this.reporteI.DetalleProblema;
+      this.reporte.reporte.Id = 0;
+      this.reporte.reporte.IdUsuario = this.user.DataUser.Id;
+      // this.reporte.reporte.IdTipoProblema=this.reporteI.IdTipoProblema;
+      this.reporte.reporte.DescripcionUbicacion = this.reporteI.DescripcionUbicacion;
+      this.reporte.reporte.UbicacionEnvioRep = this.reporteI.UbicacionEnvioRep;
+      this.reporte.reporte.DetalleProblema = this.reporteI.DetalleProblema;
       //this.reporte.reporte.Ubicacion=this.reporteI.Ubicacion;
-     
-      this.reporte.reporte.Foto1=this.imgB[0];
-      this.reporte.reporte.Foto2=this.imgB[1];
-      this.reporte.reporte.Foto3=this.imgB[2];
-      this.reporte.reporte.EstadoR="s/n"
-      this.reporte.reporte.Grado=this.reporteI.Grado;
-      this.reporte.reporte.Estatus="ACTIVO";
+
+      this.reporte.reporte.Foto1 = this.imgB[0];
+      this.reporte.reporte.Foto2 = this.imgB[1];
+      this.reporte.reporte.Foto3 = this.imgB[2];
+      this.reporte.reporte.EstadoR = "s/n"
+      this.reporte.reporte.Grado = this.reporteI.Grado;
+      this.reporte.reporte.Estatus = "ACTIVO";
       alert(JSON.stringify(this.reporte.reporte));
-      this.reporte.EnviarReporte().then(res=>{
+      this.reporte.EnviarReporte().then(res => {
         alert(JSON.stringify(res));
-        if(res)
+        if (res)
           this.navCtrl.push(ReporteConsultaPage);
 
-        
-      },
-        errr=>{
-          alert("Error en el envio verifique su conexion a internet e intente de nuevo...Erorr#:"+errr);
 
-      });
+      },
+        errr => {
+          alert("Error en el envio verifique su conexion a internet e intente de nuevo...Erorr#:" + errr);
+
+        });
 
 
     } catch (error) {

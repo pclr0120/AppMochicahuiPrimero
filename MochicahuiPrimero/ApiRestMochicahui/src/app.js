@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 // middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb', extended: true})) ;
 
 
 app.use (function(req,res,next){
@@ -29,8 +29,9 @@ app.use (function(req,res,next){
 // routes
 // routes
 
-// routes
+// routesif
 require('./routes/user')(app);
+require('./routes/RReporte')(app);
 
 
 
@@ -40,7 +41,7 @@ require('./routes/user')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 
 http.createServer(app)
-  .listen(app.get('port'), (a) => {
+  .listen(app.get('port'),'192.168.0.13', (a) => {
     console.log('server on port', app.get('port'));
 
   });
