@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ReporteConsultaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mis Reportes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+  
+    <ion-item *ngFor="let data  of listaR.ListaReporte ">
+      
+            <img [src]="listaR.ListaReporte[0].Foto1">
+          
+        <h1>{{data.CategoriaProblema}}</h1>
+        <p>Fecha:{{data.FechaRegistro}}</p>
+        <p>Estatus:{{data.EstadoR}}</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+  </ion-list>
+
+</ion-content>

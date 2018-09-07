@@ -1,0 +1,45 @@
+<ion-list no-lines>
+
+  <ion-item>
+      <ion-card>
+          <img src="assets/imgs/mapa.png"/>
+          <div class="card-title">Mapa</div>
+          <div class="card-subtitle">Seleccione la ubicacion del problema.</div>
+        </ion-card>
+  </ion-item>
+  <ion-item >
+    <ion-label>Seleccione una categoria</ion-label>
+    <ion-select [(ngModel)]="Categoria">
+      <ion-option value="1">Falta de agua</ion-option>
+      <ion-option value="2">Baja precion</ion-option>
+      <ion-option value="3">Tuberia en mal estado</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Detalle del problema</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <div style="margin-left: 120px" >
+      <button ion-button round style="height: 50px;width: 50px">
+          <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+      </button>
+    <button ion-button  color="light" style="color:black; height: 50px;width: 50px"   round>
+        <ion-icon name="photos" ></ion-icon>
+    </button>
+
+  </div>
+  <ion-item>
+      <button ion-button full>Enviar Reporte
+          <ion-icon name="ios-send-outline" ></ion-icon>
+      </button>
+  </ion-item>
+  <!-- <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item> -->
+
+</ion-list>
+
+
+

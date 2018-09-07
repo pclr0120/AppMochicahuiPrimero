@@ -1,0 +1,97 @@
+<!--
+  Generated template for the CapturaReporePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title class="text-center">
+      REPORTE {{reporte.reporte.CategoriaProblema}}
+      <ion-icon ios="ios-clipboard" md="md-clipboard"></ion-icon>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h3>Ubicacion</h3>
+  <div id="map_canvas">
+    <button ion-button (click)="GetUbicacion($event)"><ion-icon ios="ios-locate-outline" md="md-locate"></ion-icon></button>
+  </div>
+
+
+  <form (ngSubmit)="EnviarReporte()" #FormReporte="ngForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Mas detalles de la ubicacion*</ion-label>
+        <ion-input [(ngModel)]="reporteI.DescripcionUbicacion" name="reporteI.DescripcionUbicacion" maxlength="100" required type="text"></ion-input>
+      </ion-item>
+      <!-- <ion-item style="font-size: 10px">
+        <ion-label>Seleccione una categoria*</ion-label>
+        <ion-select [(ngModel)]="reporteI.IdCProblema" name="reporteI.IdCProblema" required>
+          <ion-option value="1">Falta de agua</ion-option>
+          <ion-option value="2">Baja precion</ion-option>
+          <ion-option value="3">Tuberia en mal estado</ion-option>
+        </ion-select>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label floating>Describe el problema*</ion-label>
+        <ion-input [(ngModel)]="reporteI.DetalleProblema" name="reporteI.DetalleProblema" maxlength="100" required type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+
+        <h3>FOTOS(La tres son requeridas):</h3>
+
+        <!-- <button ion-button round (click)="OpenCamera()"  style="background: brown;height: 50px;width: 50px">
+        <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+      </button> -->
+        <ion-img style="width: 80px; height: 80px;" (click)=" OpenCamera(0)" [src]="imgB[0]"></ion-img>
+        <ion-img style="width: 80px; height: 80px;" (click)=" OpenCamera(1)" [src]="imgB[1]"></ion-img>
+        <ion-img style="width: 80px; height: 80px;" [src]="imgB[2]" (click)="OpenCamera(2)"></ion-img>
+
+        <!-- <button ion-button (click)="OpenPhoto()" color="light" style="color:black; height: 50px;width: 50px" >
+        <ion-icon name="photos"></ion-icon>
+      </button> -->
+
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="BanderFoto" name="BanderaFoto" hidden style="display: none" maxlength="5" required type="text"></ion-input>
+      </ion-item>
+
+      <!-- <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item> -->
+
+      <ion-item style="font-size: 10px">
+        <ion-label>Grado del problema</ion-label>
+        <ion-select [(ngModel)]="reporteI.Grado" name="reporteI.Grado" required>
+          <ion-option value="1">Normal</ion-option>
+          <ion-option value="2">Solucion inmediata</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <button ion-button full type="submit" [disabled]="!FormReporte.form.valid">Enviar Reporte&nbsp;&nbsp;&nbsp;
+          <ion-icon name="ios-send-outline"></ion-icon>
+          </button>
+      </ion-item>
+
+    </ion-list>
+
+
+  </form>
+
+
+</ion-content>
+<!-- AIzaSyDloywEYcUclBOoCKZy9iKi_v4AOFX8I_U
+
+ionic cordova plugin add cordova-plugin-googlemaps \
+  --variable API_KEY_FOR_ANDROID="AIzaSyDloywEYcUclBOoCKZy9iKi_v4AOFX8I_U"\
+  --variable API_KEY_FOR_IOS="AIzaSyDloywEYcUclBOoCKZy9iKi_v4AOFX8I_U" -->

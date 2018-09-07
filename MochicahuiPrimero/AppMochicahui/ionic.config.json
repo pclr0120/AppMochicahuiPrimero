@@ -1,0 +1,7 @@
+{
+  "name": "AppMochicahui",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title (click)="ltemp()" style="text-align: center;" >Iniciar Sesion</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+
+
+    <ion-list >
+        <form (ngSubmit)="login()" #registerForm="ngForm">
+        <ion-item>
+          <ion-label floating>Usuario</ion-label>
+          <ion-input type="email" [(ngModel)]="user" name="user"   required email  maxlength="40"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="pasS" name="pasS"  required   maxlength="6"></ion-input>
+        </ion-item>
+        <ion-item >
+            <button class="row" ion-button clear (click)="openPage()">No tienes cuenta? Crea una</button>
+
+            <button class="row" ion-button clear>Olvide mi contraseña
+              </button>
+        </ion-item>
+
+        <button style="height: 40px" ion-button full [disabled]="!registerForm.form.valid"  >Entrar&nbsp;&nbsp;&nbsp;
+            <ion-icon name="md-arrow-forward" ></ion-icon>
+        </button>
+      </form>
+      <ion-item>
+         
+    </ion-item>
+      </ion-list>
+
+    </ion-content>
+
