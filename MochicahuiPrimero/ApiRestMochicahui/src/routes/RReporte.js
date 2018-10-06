@@ -9,7 +9,6 @@ module.exports = app => {
     var userData = {
  
 
-      
 
       IdUsuario:req.body.IdUsuario,
       //IdTipoProblema:req.body.IdTipoProblema,
@@ -24,7 +23,7 @@ module.exports = app => {
       EstadoR :req.body.EstadoR,
       Grado:req.body.Grado,
       //FechaRegistro :req.body.FechaRegistro,
-      Estatus :req.body.Estatus,
+      Estatus :req.body.Estatus
 
 
     };
@@ -34,9 +33,10 @@ module.exports = app => {
     UserModel.insertReporte(userData, (err, data) => {
     
     try {
-      alert("dentro:"+userData.IdUsuario);
+      console.log("dentro:"+userData.IdUsuario);
+     
       if (data && data.insertId) {
-
+        console.log("hola");
         res.status(200).json({
           success: true,
           msg: "Success",
@@ -44,13 +44,14 @@ module.exports = app => {
         });
      
       } else {
+        console.log("00000");
         res.status(500).json({
           success: false,
           msg: "Error"
         });
       }
     } catch (error) {
-      
+      console.log("error"+JSON.stringify(data));
     }
      
     });
@@ -60,11 +61,55 @@ module.exports = app => {
   app.get('/GetReporte/:user', (req, res) => {
     var user = req.params.user;
     UserModel.getReporte(user,(err, data) => {
-      console.log("hola00:"+data)
+      
       res.status(200).json(data);
     });
   });
 
-  
+
+
+  ////administrador App
+
+  app.get('/GetReportes', (req, res) => {
+    var user = req.params.user;
+    UserModel.getReportes(user,(err, data) => {
+      
+      res.status(200).json(data);
+    });
+  });
+
+          app.put('/ReporteAtendido', (req, res) => {
+
+        
+          const userData = {
+            Id: req.body.Id,
+          
+            //FotoPerfil:req.body.FotoPerfil,
+          // FotoIdentificacion:req.body.FotoIdentificacion,
+            //NombreCompleto:req.body.NombreCompleto,
+            //FechaNacimiento:req.body.FechaNacimiento,
+            EstadoR:req.body.EstadoR,
+            //Email:req.body.Email,
+            Estatus:req.body.Estatus
+            //IdTipoUser:1,
+          // IdTipoUser:"1",
+            
+        
+          };
+        
+
+
+          UserModel.ReporteAtendido(userData, function (err, data) {
+            if (data && data.msg) {
+              res.status(200).json({data});
+            } else {
+              res.status(500).json({
+                success: false,
+                msg: 'Error'
+              });
+            }
+          });
+        });
 
  };
+ 

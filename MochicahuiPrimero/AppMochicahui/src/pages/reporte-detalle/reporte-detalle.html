@@ -10,14 +10,25 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background:#f0860c">
 
-  <h3>Ubicacion</h3>
-  <div id="map_canvas">
-    <!-- <button ion-button >
-      <ion-icon ios="ios-locate-outline" md="md-locate"></ion-icon>
-    </button> -->
-  </div>
+    <ion-card>
+
+      <ion-card-header>
+        MENSAJE DE LA SINDICATURA:
+      </ion-card-header>
+    
+      <ion-card-content>
+        <h2 style="color:rgb(18, 161, 25)">{{reporte.DetalleReporte.EstadoR}}</h2>
+   
+      </ion-card-content>
+    
+    </ion-card>
+   
+    <h3>Ubicacion</h3>
+    <div id="map_canvas">
+      <button ion-button (click)="GetUbicacion($event)"><ion-icon ios="ios-locate-outline" md="md-locate"></ion-icon></button>
+    </div>
 
 
   <form #FormReporte="ngForm">
@@ -47,6 +58,7 @@
 
 
       </ion-item>
+
       
 
       <ion-item style="font-size: 10px">
@@ -59,7 +71,7 @@
 
       <ion-item>
         <button ion-button full>Volver a Todos los reportes&nbsp;&nbsp;&nbsp;
-          <ion-icon name="ios-send-outline"></ion-icon>
+          <!-- <ion-icon name="ios-send-outline"></ion-icon> -->
         </button>
       </ion-item>
 
@@ -67,6 +79,6 @@
 
 
   </form>
-
+ 
 
 </ion-content>

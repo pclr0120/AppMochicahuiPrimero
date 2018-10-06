@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title ></ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title></ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <!-- <ion-content>
   <ion-list>
@@ -24,72 +24,73 @@
 <ion-content>
 
   <div>
-        <h1>REPORTES</h1>
-  
+    <h1>REPORTES       <ion-icon ios="ios-clipboard" md="md-clipboard"></ion-icon></h1>
+
   </div>
 
   <ion-list>
 
-    <button class="water" ion-item (click)="cam()" >
-      <ion-icon name="ios-water-outline"    item-start></ion-icon>
-          AGUA
-          <div class="item-note" item-end>
-            <ion-icon name="md-arrow-dropright"></ion-icon>
-          </div>
-    </button>
-    <button class="trash"ion-item (click)="openG()">
-      <ion-icon name="ios-trash-outline" item-start></ion-icon>
-         BASURA
+    <button class="water" ion-item (click)="OpenReport('AGUA')">
+      <ion-icon name="ios-water-outline" item-start></ion-icon>
+      AGUA
       <div class="item-note" item-end>
         <ion-icon name="md-arrow-dropright"></ion-icon>
       </div>
     </button>
-    <button class="alum"ion-item  (click)="OpenReport('Luz')">
-      <ion-icon name="ios-sunny-outline"  item-start></ion-icon>
-        ALUMBRADO PÚBLICO
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+    <button class="trash" ion-item (click)="OpenReport('BASURA')">
+      <ion-icon name="ios-trash-outline" item-start></ion-icon>
+      BASURA
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
-    <button class="baches"(click)="OpenReport('bache')" ion-item >
+    <button class="alum" ion-item (click)="OpenReport('ALUMBRADO')">
+      <ion-icon name="ios-sunny-outline" item-start></ion-icon>
+      ALUMBRADO PÚBLICO
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
+    </button>
+    <button class="baches" (click)="OpenReport('BACHES')" ion-item>
       <ion-icon name="md-car" item-start></ion-icon>
-        BACHES
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+      BACHES
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
-    <button class="otros" (click)="open2()" ion-item >
+    <button class="otros" (click)="OpenReport('OTROS')" ion-item>
       <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
-        OTROS
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+      OTROS
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
   </ion-list>
-<div>
-  <h1>EMERGENCIA <ion-icon name="ios-call-outline"></ion-icon></h1>
-</div>
-  <ion-list   class="fondo">
-    <button ion-item >
+  <div>
+    <h1>EMERGENCIA <ion-icon name="ios-call-outline"></ion-icon>
+    </h1>
+  </div>
+  <ion-list class="fondo">
+    <button ion-item (click)="Llamar('6681010012')" >
       <ion-icon name="md-call" item-start></ion-icon>
-        LLAMAR POLICIA
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+      LLAMAR POLICIA
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
-    <button ion-item >
+    <button ion-item (click)="Llamar('6681010012')">
       <ion-icon name="md-call" item-start></ion-icon>
-        LLAMAR TRANSITO
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+      LLAMAR TRANSITO
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
-    <button ion-item >
+    <button ion-item (click)="Llamar('*333')">
       <ion-icon name="md-home" item-start></ion-icon>
-        LLAMAR SINDICATURA
-        <div class="item-note" item-end>
-          <ion-icon name="md-arrow-dropright"></ion-icon>
-        </div>
+      LLAMAR SINDICATURA
+      <div class="item-note" item-end>
+        <ion-icon name="md-arrow-dropright"></ion-icon>
+      </div>
     </button>
   </ion-list>
 

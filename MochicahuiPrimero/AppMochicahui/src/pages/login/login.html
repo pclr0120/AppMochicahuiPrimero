@@ -1,41 +1,52 @@
-<ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title (click)="ltemp()" style="text-align: center;" >Iniciar Sesion</ion-title>
-    </ion-navbar>
-  </ion-header>
-
-  <ion-content>
 
 
-    <ion-list >
-        <form (ngSubmit)="login()" #registerForm="ngForm">
+
+ 
+
+    <ion-content padding style="background:#d37407fb">
+      <form #registerForm="ngForm" style=" border-radius: 10%; background-position: 10%;" >
+        <ion-item style="text-align: center">
+            <img src="../assets/imgs/mapaMochi.png"  style="height: 60px; width: 60px;background: white;    border-radius: 50%; background-position: 50%;">
+            <img src="../assets/imgs/entrada.jpg"  style="height: 100px; width: 100px;background: white;    border-radius: 50%; background-position: 50%;">
+            
+            <img src="../assets/imgs/iglesia.jpg"  style="height: 60px; width: 60px;background: white;    border-radius: 50%; background-position: 50%;">
+         
+            <h2>MOCHICAHUI ES PRIMERO</h2>
+            <h6>Reporte ciudadano</h6>
+          
+          </ion-item>
+        
+
         <ion-item>
           <ion-label floating>Usuario</ion-label>
-          <ion-input type="email" [(ngModel)]="user" name="user"   required email  maxlength="40"></ion-input>
+          <ion-input type="email" [(ngModel)]="user" name="user" required email maxlength="40"></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="pasS" name="pasS"  required   maxlength="6"></ion-input>
+          <ion-label floating>Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="pasS" name="pasS" required maxlength="10" minlength="6"></ion-input>
         </ion-item>
-        <ion-item >
-            <button class="row" ion-button clear (click)="openPage()">No tienes cuenta? Crea una</button>
+        <ion-item>
+          <ion-row>
+            <label style="text-align:left" ion-button clear (click)="openPage()">No tienes cuenta? Crea una</label>
+          </ion-row>
 
-            <button class="row" ion-button clear>Olvide mi contraseña
-              </button>
+          <!-- <ion-row>
+          <label ion-button clear>Olvide mi contraseña
+          </label>
+        </ion-row> -->
+
         </ion-item>
 
-        <button style="height: 40px" ion-button full [disabled]="!registerForm.form.valid"  >Entrar&nbsp;&nbsp;&nbsp;
-            <ion-icon name="md-arrow-forward" ></ion-icon>
-        </button>
+        <ion-item>
+          <button style="height: 40px" (click)="login()" ion-button full [disabled]="!registerForm.form.valid">Entrar&nbsp;&nbsp;&nbsp;
+            <ion-icon name="md-arrow-forward"></ion-icon>
+          </button>
+        </ion-item>
       </form>
-      <ion-item>
-         
-    </ion-item>
-      </ion-list>
 
-    </ion-content>
 
+
+
+
+</ion-content>

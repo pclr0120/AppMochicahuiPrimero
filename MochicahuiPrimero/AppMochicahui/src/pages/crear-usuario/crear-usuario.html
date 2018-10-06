@@ -1,0 +1,145 @@
+<!--
+  Generated template for the CrearUsuarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Registrarme</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:#d37407fb">
+
+
+
+    <form #myForm="ngForm" novalidate>
+            <ion-item>
+
+
+
+                    <ion-card>
+        
+        
+        
+                        <ion-card-content >
+                            <div class="row">
+                                <ion-col>
+                                <ion-item >
+                                     <p>Foto de Perfil </p>
+                                        <ion-img [src]="userR.crearUsuario.FotoPerfil"  (click)=" OpenCamera(1)" height="80px" width="80px"></ion-img>
+                                        
+                                </ion-item>
+
+                                        <!-- <p>Para poder registrarte debes </p>
+                                        <p>de tomar una foto de tu</p>
+                                        <p> rostro y una </p>
+                                        <p>identificacion oficial </p>
+                                        <p>para poder tomar</p>
+                                        <p> encuenta tus reportes enviados.</p> -->
+                                        <!-- <button ion-button clear (click)=" OpenCamera(1)" style="color:rgb(39, 137, 228)">Tomar Foto</button> -->
+                                </ion-col>
+                                
+                                <ion-col>
+                                        <ion-item >
+                                                <p>Identificacion </p>
+
+                                                <ion-img [src]="userR.crearUsuario.FotoIdentificacion" (click)=" OpenCamera(2)" height="80px" width="80px"></ion-img>
+                                       
+                                           </ion-item>
+                                        <!-- <p>Identificacion oficial </p>
+                                        <p>vigente.</p> -->
+                                    
+<!--                                      
+                                            <button ion-button clear (click)=" OpenCamera(2)" style="color:rgb(15, 140, 223)">Tomar Foto</button>
+                                 -->
+                                </ion-col>
+        
+        
+                            </div>
+        
+        
+        
+                        </ion-card-content>
+        
+                    </ion-card>
+        
+        
+                </ion-item>
+
+     
+           
+
+        <ion-item>
+
+            <ion-input hidden type="text" [(ngModel)]="userR.crearUsuario.FotoPerfil" minlength="100" name="userR.crearUsuario.FotoPerfil"
+                requiered></ion-input>
+            <ion-input hidden type="text" [(ngModel)]="userR.crearUsuario.FotoIdentificacion" minlength="100" name="userR.crearUsuario.FotoIdentificacion"
+                requiered></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Nombre completo</ion-label>
+            <ion-input type="text" [(ngModel)]="userR.crearUsuario.NombreCompleto" name="userR.crearUsuario.NombreCompleto"
+                maxlength="50" minlength="10" requiered></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label>Fecha de Nacimiento</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="userR.crearUsuario.FechaNacimiento" name="userR.crearUsuario.FechaNacimiento"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="userR.crearUsuario.Pass" name="userR.crearUsuario.Pass" maxlength="10"
+                minlength="6" requiered></ion-input>
+
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirmar la Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="CPass" name="CPass" maxlength="10" minlength="6" requiered></ion-input>
+
+        </ion-item>
+        <ion-badge *ngIf="CPass!=userR.crearUsuario.Pass && CPass!=''" style="background: red" item-start>Las
+            contraseñas no son iguales..</ion-badge>
+
+
+        <ion-item>
+            <ion-label floating>Telefono</ion-label>
+            <ion-input type="tel" [(ngModel)]="userR.crearUsuario.Telefono" name="userR.crearUsuario.Telefono" required
+                telefone maxlength="10" minlength="10"></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="userR.crearUsuario.Email" name="userR.crearUsuario.Email" maxlength="40"
+                minlength="8" requiered email></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Domicilio</ion-label>
+            <ion-input type="text" [(ngModel)]="userR.crearUsuario.Domicilio" name="userR.crearUsuario.Domicilio"
+                maxlength="40" minlength="8" requiered></ion-input>
+
+        </ion-item>
+
+
+
+
+
+<ion-item>
+        <button ion-button full (click)="enviar();" [disabled]="!myForm.form.valid">Enviar Registro
+                <ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward"></ion-icon>
+            </button>
+</ion-item>
+     
+    </form>
+
+
+
+</ion-content>

@@ -2,15 +2,21 @@
 export class LogUsuario
 {
 
+   
+
         Id:number;
-        NombreCompleto:string  
-        Telefono:string;
-        Email:string;
-        Pass:string;
-  
-        TipoUser:string;
-     
-        Estatus:string;
+        FotoPerfil:string="../assets/iconos/cam3.png";
+        FotoIdentificacion:string="../assets/iconos/cam3.png";
+        NombreCompleto:string="";
+        FechaNacimiento:string="";
+        Telefono:string="";
+        Email:string="";
+        Pass:string="";
+        Domicilio:string="";
+      //  IdTipoUser:string;
+       // UbicacionDom:string;
+        //FechaRegistro:string="";
+        Estatus:string="ACTIVO";
     
     
 }

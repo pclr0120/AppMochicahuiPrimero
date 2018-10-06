@@ -93,6 +93,9 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="the app need the camera" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="the app need the photolibrary" />
     </plugin>
+    <plugin name="com-sarriaroman-photoviewer" spec="^1.1.18" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
+    <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
     <engine name="android" spec="7.1.1" />
     <engine name="ios" spec="4.5.5" />
 </widget>

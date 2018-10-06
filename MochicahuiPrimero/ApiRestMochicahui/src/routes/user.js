@@ -14,21 +14,24 @@ module.exports = app => {
 
 
       Id:null,
-      NombreCompleto:req.NombreCompleto,
-      FechaNacimiento:req.FechaNacimiento,
-      Telefono:req.Telefono,
-      Email:req.Email,
-      Pass:req.Pass,
-      Domicilio:req.Domicilio,
-      IdTipoUser:req.IdTipoUser,
-      UbicacionDom:req.UbicacionDom,
-      FechaRegistro:req.FechaRegistro,
-      Estatus:req.Estatus
+      FotoPerfil:req.body.FotoPerfil,
+      FotoIdentificacion:req.body.FotoIdentificacion,
+      NombreCompleto:req.body.NombreCompleto,
+      FechaNacimiento:req.body.FechaNacimiento,
+      Telefono:req.body.Telefono,
+      Email:req.body.Email,
+      Pass:req.body.Pass,
+      Domicilio:req.body.Domicilio,
+      IdTipoUser:"1",
+      //UbicacionDom:req.body.UbicacionDom,
+      //FechaRegistro:req.FechaRegistro,
+      Estatus:req.body.Estatus
 
     };
    
     UserModel.insertUser(userData, (err, data) => {
     try {
+     
       if (data && data.insertId) {
 // ///insertar primiso
 //         var userData2 = {
@@ -82,37 +85,28 @@ module.exports = app => {
   
       });
   });
+  app.get('/verificar/:user', (req, res) => {
+ 
+    var user = req.params.user;
+    UserModel.getVer(user,(err, data) => {
+        res.status(200).json(data);
+        
+  
+      });
+  });
 
-  app.get('/GetUser', (req, res) => {
-    UserModel.getUsers((err, data) => {
-      console.log("hola00:"+data)
+  app.get('/val/:user', (req, res) => {
+    var user = req.params.user;
+
+    UserModel.VerficarUser((err, data) => {
+
       res.status(200).json(data);
     });
   });
 
 
-//   app.put('/users/:id', (req, res) => {
-//     const userData = {
-//       Id: req.params.id,
-     
-//       pass: req.body.Password,
-//       Estatus:req.body.Estatus,
-//       Rol: req.body.Rol,
-      
-   
-//     };
-//     UserModel.updateUser(userData, function (err, data) {
-//       if (data && data.msg) {
-//         res.status(200).json({data});
-//       } else {
-//         res.status(500).json({
-//           success: false,
-//           msg: 'Error'
-//         });
-//       }
-//     });
-//   });
 
+  
 //   app.delete('/users/:id', (req, res) => {
 //     var id = req.params.id;
 //     UserModel.deleteUser(id, (err, data) =>  {
@@ -128,4 +122,44 @@ module.exports = app => {
 //       }
 //     });
 //   });
+
+
+        app.put('/UsuarioUpdate', (req, res) => {
+
+        
+          const userData = {
+            Id: req.body.Id,
+          
+            //FotoPerfil:req.body.FotoPerfil,
+          // FotoIdentificacion:req.body.FotoIdentificacion,
+            //NombreCompleto:req.body.NombreCompleto,
+            //FechaNacimiento:req.body.FechaNacimiento,
+            Telefono:req.body.Telefono,
+            //Email:req.body.Email,
+            Pass:req.body.Pass,
+            Domicilio:req.body.Domicilio,
+            //IdTipoUser:1,
+          // IdTipoUser:"1",
+            
+        
+          };
+        
+
+
+          UserModel.updateUsuario(userData, function (err, data) {
+            if (data && data.msg) {
+              res.status(200).json({data});
+            } else {
+              res.status(500).json({
+                success: false,
+                msg: 'Error'
+              });
+            }
+          });
+        });
  };
+
+
+
+
+ 

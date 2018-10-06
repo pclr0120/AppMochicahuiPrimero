@@ -12,7 +12,7 @@ let userModel = {};
 userModel.insertUser = (  userData, callback) => {
   try {
     if (connection) {
-      connection.query('INSERT INTO   Usuario SET ?', userData,
+      connection.query('INSERT INTO   usuario SET ?', userData,
         (err, result) => {
           if (err) {
             throw err;
@@ -28,9 +28,9 @@ userModel.insertUser = (  userData, callback) => {
   }
 };
 userModel.getUsers = (callback) => {
-  console.log("hola");
+
   if (connection) {
-    console.log("hola");
+   
     connection.query('SELECT * FROM Usuario ORDER BY Id',
       (err, rows) => {
         
@@ -40,6 +40,26 @@ userModel.getUsers = (callback) => {
         }
         else {
         
+          callback(null, rows);
+        }
+      }
+    )
+  }
+};
+
+userModel.VerficarUser = (user,callback) => {
+
+  if (connection) {
+
+    connection.query('SELECT * FROM usuario where Email=='+connection.escape(user),
+      (err, rows) => {
+        
+        if (err) {
+
+          throw err
+        }
+        else {
+
           callback(null, rows);
         }
       }
@@ -69,29 +89,33 @@ userModel.getUsers = (callback) => {
 
 
 
-// userModel.updateUser = (userData, callback) => {
-//   console.log('jajaj',userData)
-//   if (connection) {
-//     const sql = `
-//       UPDATE usuario SET
+userModel.updateUsuario = (userData, callback) => {
 
-//       pass = ${connection.escape(userData.pass)},
-//       Estatus= ${connection.escape(userData.Estatus)},
-//       Rol= ${connection.escape(userData.Rol)}
+  if (connection) {
+    const sql = `
+      UPDATE usuario SET
      
-//       WHERE Id = ${userData.Id}`;
+      Pass = ${connection.escape(userData.Pass)},
+    
+      Domicilio= ${connection.escape(userData.Domicilio)},
+      Telefono= ${connection.escape(userData.Telefono)}
+     
+   
+      WHERE Id =  ${connection.escape(userData.Id)};`;
 
-//     connection.query(sql, function (err, result) {
-//       if (err) {
-//         throw err;
-//       } else {
-//         callback(null, {
-//           "msg": "success"
-//         })
-//       }
-//     });
-//   }
-// };
+    connection.query(sql, function (err, result) {
+      if (err) {
+        //quitar cuando este en produccion
+        throw err;
+      } else {
+        //Console.log(JSON.stringify(result))
+        callback(null, {
+          "msg": "success"
+        })
+      }
+    });
+  }
+};
 
 // userModel.deleteUser = (id, callback) => {
 //   if (connection) {
@@ -143,9 +167,29 @@ userModel.getLog = (user,callback) => {
           console.log(JSON.stringify(err));
         }
         else {
-         console.log(rows)
+      //   console.log(rows)
          if(rows[0]!=undefined)
           callback(null, rows);
+          else
+            callback(null, false);
+
+        }
+      }
+    )
+  }
+};
+userModel.getVer = (user,callback) => {
+  if (connection) {
+
+    connection.query('SELECT *from Usuario WHERE Email='+ connection.escape(user),
+      (err, rows) => {
+        if (err) {
+          console.log(JSON.stringify(err));
+        }
+        else {
+     
+         if(rows[0]!=undefined)
+          callback(null, true);
           else
             callback(null, false);
 

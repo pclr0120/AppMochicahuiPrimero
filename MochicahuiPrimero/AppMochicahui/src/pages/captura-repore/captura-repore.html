@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <ion-title class="text-center">
-      REPORTE {{reporte.reporte.CategoriaProblema}}
+      Reporte: {{reporte.reporte.CategoriaProblema}}
       <ion-icon ios="ios-clipboard" md="md-clipboard"></ion-icon>
     </ion-title>
   </ion-navbar>
@@ -16,7 +16,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background:#f09732">
 
   <h3>Ubicacion</h3>
   <div id="map_canvas">
@@ -28,7 +28,7 @@
     <ion-list>
 
       <ion-item>
-        <ion-label floating>Mas detalles de la ubicacion*</ion-label>
+        <ion-label floating>Mas detalles de la ubicacion</ion-label>
         <ion-input [(ngModel)]="reporteI.DescripcionUbicacion" name="reporteI.DescripcionUbicacion" maxlength="100" required type="text"></ion-input>
       </ion-item>
       <!-- <ion-item style="font-size: 10px">
@@ -41,7 +41,7 @@
       </ion-item> -->
 
       <ion-item>
-        <ion-label floating>Describe el problema*</ion-label>
+        <ion-label floating>Describe el problema</ion-label>
         <ion-input [(ngModel)]="reporteI.DetalleProblema" name="reporteI.DetalleProblema" maxlength="100" required type="text"></ion-input>
       </ion-item>
 
@@ -62,7 +62,7 @@
 
       </ion-item>
       <ion-item>
-        <ion-input [(ngModel)]="BanderFoto" name="BanderaFoto" hidden style="display: none" maxlength="5" required type="text"></ion-input>
+        <!-- <ion-input [(ngModel)]="BanderFoto" name="BanderaFoto" hidden style="display: none" maxlength="5" required type="text"></ion-input> -->
       </ion-item>
 
       <!-- <ion-item>

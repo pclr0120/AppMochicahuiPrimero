@@ -41,7 +41,7 @@ require('./routes/RReporte')(app);
 app.use(express.static(path.join(__dirname, 'public')));
 
 http.createServer(app)
-  .listen(app.get('port'),'192.168.0.13', (a) => {
+  .listen(app.get('port'),'192.168.0.10', (a) => {
     console.log('server on port', app.get('port'));
 
   });

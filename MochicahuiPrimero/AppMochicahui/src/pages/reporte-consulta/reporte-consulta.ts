@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ReporteProvider } from '../../providers/reporte/reporte';
 import { LoginProvider } from '../../providers/login/login';
 import { ReporteDetallePage } from '../reporte-detalle/reporte-detalle';
+import { PhotoViewPage } from '../photo-view/photo-view';
 
 /**
  * Generated class for the ReporteConsultaPage page.
@@ -36,8 +37,13 @@ export class ReporteConsultaPage {
   }
 
   OpenDetalle(id:number){
+
     this.listaR.IdReporte=id;
     this.navCtrl.push(ReporteDetallePage)
+
+  }
+  openN(){
+    this.navCtrl.push(PhotoViewPage);
 
   }
 

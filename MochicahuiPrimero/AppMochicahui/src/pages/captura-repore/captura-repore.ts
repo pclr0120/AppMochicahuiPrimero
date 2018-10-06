@@ -51,8 +51,8 @@ export class CapturaReporePage {
       sourceType: this.camera.PictureSourceType.CAMERA,
       destinationType: this.camera.DestinationType.DATA_URL,
       quality: 50,
-      targetWidth: 50,
-      targetHeight: 50,
+      targetHeight:1000,
+      targetWidth:1000,
       encodingType: this.camera.EncodingType.PNG,
     }).then(imageData => {
       let loading = this.loadingCtrl.create({
@@ -62,7 +62,7 @@ export class CapturaReporePage {
 
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.imgB[n] = base64Image;
-      alert("tamaño:" + this.imgB[0].length)
+
       let cont: number = 0;
       for (let index = 0; index < this.imgB.length; index++) {
 
@@ -93,26 +93,28 @@ export class CapturaReporePage {
 
   }
 
-  OpenPhoto() {
+  // OpenPhoto() {
 
-    this.camera.getPicture({
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      quality: 20,
-      encodingType: this.camera.EncodingType.PNG,
-    }).then(imageData => {
-      let loading = this.loadingCtrl.create({
-        content: 'Cargando foto...'
-      });
+  //   this.camera.getPicture({
+  //     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  //     destinationType: this.camera.DestinationType.DATA_URL,
+  //     quality: 10,
+  //     targetHeight:20,
+  //     targetWidth:20,
+  //     encodingType: this.camera.EncodingType.PNG,
+  //   }).then(imageData => {
+  //     let loading = this.loadingCtrl.create({
+  //       content: 'Cargando foto...'
+  //     });
 
-      loading.present();
-      setTimeout(() => {
-        loading.dismiss();
-      }, 1000);
-    }, error => {
-      alert(JSON.stringify(error));
-    });
-  }
+  //     loading.present();
+  //     setTimeout(() => {
+  //       loading.dismiss();
+  //     }, 1000);
+  //   }, error => {
+  //     alert(JSON.stringify(error));
+  //   });
+  // }
 
   ionViewDidLoad() {
 
@@ -167,9 +169,9 @@ export class CapturaReporePage {
               position: location.latLng,
               animation: GoogleMapsAnimation.BOUNCE
             });
-            alert("local:" + location.latLng)
-            alert(JSON.stringify(this.imgB[0]))
-            this.reporteI.UbicacionEnvioRep = location.latLng.toString();
+
+            this.reporteI.UbicacionEnvioRep = location.latLng.lat+","+location.latLng.lng;
+          
             setTimeout(() => {
               loading.dismiss();
             }, 2000);
@@ -185,6 +187,10 @@ export class CapturaReporePage {
   }
 
   EnviarReporte() {
+    let loading = this.loadingCtrl.create({
+      content: 'Enviando reporte..'
+    });
+    loading.present();
     try {
       this.reporte.reporte.Id = 0;
       this.reporte.reporte.IdUsuario = this.user.DataUser.Id;
@@ -197,27 +203,42 @@ export class CapturaReporePage {
       this.reporte.reporte.Foto1 = this.imgB[0];
       this.reporte.reporte.Foto2 = this.imgB[1];
       this.reporte.reporte.Foto3 = this.imgB[2];
-      this.reporte.reporte.EstadoR = "s/n"
+      this.reporte.reporte.EstadoR = "Entregado"
       this.reporte.reporte.Grado = this.reporteI.Grado;
       this.reporte.reporte.Estatus = "ACTIVO";
-      alert(JSON.stringify(this.reporte.reporte));
+  
       this.reporte.EnviarReporte().then(res => {
-        alert(JSON.stringify(res));
-        if (res)
-          this.navCtrl.push(ReporteConsultaPage);
+       // alert("DEbulbel:"+res)
+       setTimeout(() => {
+        loading.dismiss();
+        this.navCtrl.setRoot(ReporteConsultaPage);
+      }, 10000);
+      
+     
+         
 
 
       },
         errr => {
+          setTimeout(() => {
+            loading.dismiss();
+            this.navCtrl.setRoot(ReporteConsultaPage);
+          }, 10000);
+      
           alert("Error en el envio verifique su conexion a internet e intente de nuevo...Erorr#:" + errr);
-
+         // this.navCtrl.push(ReporteConsultaPage);
         });
 
 
     } catch (error) {
-      alert("Verifique su conexion a  internet...");
-    }
 
+      alert("Verifique su conexion a  internet...");
+    } 
+    setTimeout(() => {
+      loading.dismiss();
+      this.navCtrl.setRoot(ReporteConsultaPage);
+    }, 10000);
+  
   }
 
 

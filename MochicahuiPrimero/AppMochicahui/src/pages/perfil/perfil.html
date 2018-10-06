@@ -1,0 +1,144 @@
+<!--
+  Generated template for the perfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon style="text-align: center" name="menu"></ion-icon>
+        </button>
+        <ion-title>Mi Perfil</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background:#f5911fa1">
+
+
+
+    <form #myForm="ngForm" novalidate style="background:#f5911fa1">
+
+        <ion-item>
+
+
+
+            <ion-card>
+
+
+
+                <ion-card-content>
+                    <div class="row">
+                        <ion-col>
+                            <h4 style="color: rgb(10, 135, 207)"> Foto de Perfil </h4>
+                            <ion-img item-start style="align-items: center" [src]="PerfilLog.perfil[0].FotoPerfil"
+                                height="80px" width="80px"></ion-img>
+                        </ion-col>
+                        <ion-col>
+
+
+
+                            <ion-img item-start style="align-content: center" [src]="PerfilLog.perfil[0].FotoIdentificacion"
+                                height="80px" width="80px"></ion-img>
+
+
+                        </ion-col>
+
+
+                    </div>
+
+
+
+                </ion-card-content>
+
+            </ion-card>
+
+
+        </ion-item>
+
+
+
+
+
+        <!-- 
+                  
+
+            <div class="row">
+                <button ion-button clear (click)=" Action()" style="color:rgb(39, 137, 228)">Editar</button>
+            </div> -->
+
+
+        <!-- <ion-item  style="align-content: center" item-center>
+              <h2>Foto Identificacion</h2>
+                <ion-img  style="align-content: center" [src]="PerfilLog.perfil[0].FotoIdentificacion" height="80px" width="80px"></ion-img>
+          
+            <div class="row">
+                <button ion-button clear (click)="Action()" style="color:rgb(15, 140, 223)">Editar</button>
+            </div> -->
+
+        <!-- </ion-item> -->
+
+        <ion-item>
+            <ion-label floating>Nombre completo</ion-label>
+            <ion-input type="text" [(ngModel)]="PerfilLog.perfil[0].NombreCompleto" disabled name="PerfilLog.perfil[0].NombreCompleto"
+                maxlength="50" minlength="10"></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label>Fecha de Nacimiento</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" disabled [(ngModel)]="PerfilLog.perfil[0].FechaNacimiento" name="PerfilLog.perfil[0].FechaNacimiento"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="PerfilLog.perfil[0].Pass" name="PerfilLog.perfil[0].Pass" maxlength="10"
+                minlength="6"></ion-input>
+
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirmar la Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="CPass" name="CPass" maxlength="10" minlength="6"></ion-input>
+
+        </ion-item>
+        <ion-badge *ngIf="CPass!=PerfilLog.perfil[0].Pass && CPass!=''" style="background: red" item-start>Las
+            contraseñas no son iguales..</ion-badge>
+
+
+        <ion-item>
+            <ion-label floating>Telefono</ion-label>
+            <ion-input type="tel" [(ngModel)]="PerfilLog.perfil[0].Telefono" name="PerfilLog.perfil[0].Telefono"
+                required telefone maxlength="10" minlength="10"></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input disabled type="email" [(ngModel)]="PerfilLog.perfil[0].Email" name="PerfilLog.perfil[0].Email"
+                maxlength="40" minlength="8" email></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Domicilio</ion-label>
+            <ion-input type="text" [(ngModel)]="PerfilLog.perfil[0].Domicilio" name="PerfilLog.perfil[0].Domicilio"
+                maxlength="40" minlength="8"></ion-input>
+
+        </ion-item>
+
+
+
+
+
+        <ion-item>
+            <button ion-button full (click)="ActualizarPerfil();" [disabled]="!myForm.form.valid">GUARDAR CAMBIOS
+                <ion-icon ios="ios-arrow-round-forward" md="md-arrow-round-forward"></ion-icon>
+            </button>
+        </ion-item>
+
+    </form>
+
+
+
+</ion-content>

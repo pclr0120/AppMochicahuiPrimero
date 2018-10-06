@@ -16,7 +16,7 @@ export class ReporteProvider {
 
   public reporte: Reporte = new Reporte();
   public ListaReporte: Reporte[] = [];
- 
+ public s:string;
 
 
   //variable para el detalle del reporte
@@ -32,30 +32,31 @@ export class ReporteProvider {
 
   EnviarReporte() {
     return new Promise(resolve => {
-      let loading = this.loadingCtrl.create({
-        content: 'Enviando...'
-      });
+      // let loading = this.loadingCtrl.create({
+      //   content: 'Enviando...'
+      // });
 
-      loading.present();
-      this.http.post("http://192.168.0.13:3000/reporte/", this.reporte).subscribe(res => {
-
+    //  loading.present();
+      this.http.post("http://192.168.0.10:3000/reporte/", this.reporte).subscribe(res => {
+       
+      
+        //loading.dismiss();
         resolve(res); 
+    
 
       },
         err => {
 
-
-          alert("error en el envio..:" + JSON.stringify(err));
+        //  loading.dismiss();
+        //  alert("error en el envio..:" + JSON.stringify(err));
 
         });
-      setTimeout(() => {
-        loading.dismiss();
-
-      }, 2000);
+     
     });
   }
 
   GetReporte(user) {
+    this.ListaReporte=[];
     let loading = this.loadingCtrl.create({
       content: 'Obteniendo Reporte..'
     });
@@ -63,7 +64,7 @@ export class ReporteProvider {
     loading.present();
     new Promise(resolve => {
 
-      this.http.get<IReporte[]>("http://192.168.0.13:3000/getReporte/" + user).subscribe(data => {
+      this.http.get<IReporte[]>("http://192.168.0.10:3000/getReporte/" + user).subscribe(data => {
 
         for (const key in data) {
           if (data.hasOwnProperty(key)) {
@@ -71,7 +72,7 @@ export class ReporteProvider {
 
             this.ListaReporte.push(element);
 
-            alert(this.ListaReporte[0].Foto1);
+          //  alert(this.ListaReporte[0].Foto1);
 
           }
         }
@@ -81,8 +82,10 @@ export class ReporteProvider {
         }, 2000);
         resolve(data);
       }, err => {
+        loading.dismiss();
         alert("Error#S0 Verifique su conenxion a internet."+JSON.stringify(err));
       });
+   
     });
 
   }
@@ -91,7 +94,7 @@ export class ReporteProvider {
 
     try {
       this.DetalleReporte=this.ListaReporte.filter(data=>(data.Id==id)).pop();
-      alert(JSON.stringify(this.DetalleReporte));
+   
       
     } catch (error) {
       

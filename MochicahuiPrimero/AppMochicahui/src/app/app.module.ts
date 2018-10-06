@@ -11,7 +11,7 @@ import {ReporteDetallePage}from '../pages/reporte-detalle/reporte-detalle';
 
 //componentes
 import { ReporteComponent } from "../components/reporte/reporte";
-import { RegistrarUsuarioComponent } from '../components/registrar-usuario/registrar-usuario';
+import {CrearUsuarioPage } from '../pages/crear-usuario/crear-usuario';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
@@ -23,6 +23,13 @@ import { GoogleMaps } from "@ionic-native/google-maps";
 import { ReporteProvider } from '../providers/reporte/reporte';
 import {ReporteConsultaPage}from '../pages/reporte-consulta/reporte-consulta';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import{PhotoViewPage}from '../pages/photo-view/photo-view';
+import{FotoVistaPage}from '../pages/foto-vista/foto-vista';
+import { CallNumber } from '@ionic-native/call-number';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import{PerfilPage}from '../pages/perfil/perfil';
+import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -32,9 +39,14 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     LoginPage, 
     CapturaReporePage,
     ReporteDetallePage,
+    PhotoViewPage,
+    FotoVistaPage,
+    //temporal
+   
     //compoenentes
     ReporteComponent,
-    RegistrarUsuarioComponent,ReporteConsultaPage
+    PerfilPage,
+    CrearUsuarioPage,ReporteConsultaPage
   ],
   imports: [
     
@@ -49,16 +61,23 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     ListPage, 
     LoginPage, 
     ReporteDetallePage,
+    PhotoViewPage,
+    FotoVistaPage,
     CapturaReporePage,ReporteConsultaPage,
+    PerfilPage,
+       //temporal
+    
     //compoenentes
     ReporteComponent,
-    RegistrarUsuarioComponent
+    CrearUsuarioPage
   ],
   providers: [
     StatusBar,
     SplashScreen, GoogleMaps,Camera,BarcodeScanner,Base64, LoginProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ReporteProvider,PhotoViewer
+    ReporteProvider,PhotoViewer,CallNumber,
+    UsuarioProvider,
+    UsuarioProvider,ActionSheet
    
   ]
 })

@@ -7,24 +7,31 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Mis Reportes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background:#f58f1b">
   <ion-list>
-  
-    <ion-item *ngFor="let data  of listaR.ListaReporte " >
-      
-            <img [src]="listaR.ListaReporte[0].Foto1">
-          
-        <h1>{{data.CategoriaProblema}}</h1>
-        <p>Fecha:{{data.FechaRegistro}}</p>
-        <p>Estatus:{{data.EstadoR}}</p>
-        <button (click)="OpenDetalle(data.Id);" ion-button clear item-end>View</button>
-      </ion-item>
+ 
+    <ion-item *ngFor="let data  of listaR.ListaReporte; let i=index; " (click)="OpenDetalle(data.Id);" >
+      <h2 >#{{i+1}}</h2>
+      <h1 style="color: rgb(13, 135, 241)" >{{data.CategoriaProblema}}</h1>
+      <ion-icon *ngIf="data.Estatus!='Solucionado'" item-end name="arrow-forward"></ion-icon>
+      <ion-icon *ngIf="data.Estatus=='Solucionado'" style="color:rgb(94, 161, 26)" item-end name="checkmark-circle"></ion-icon>
+      <p style="color: rgb(17, 129, 226)">Fecha:{{data.FechaRegistro}}</p>
+      <p *ngIf="data.Estatus!='Solucionado'" style="color: rgb(231, 2, 2)">Estatus:{{data.Estatus}}</p>
+      <p  *ngIf="data.Estatus=='Solucionado'"  style="color: rgb(19, 124, 6)">Estatus:{{data.Estatus}}</p>
+    
+    </ion-item>
+    <ion-item  *ngIf="listaR.ListaReporte<=0">
+        <h1>No tienes ningun reporte</h1>
+    </ion-item>
   </ion-list>
 
 </ion-content>
